@@ -20,7 +20,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:url" content="https://RL0rp.netlify.app/">
+    <meta property="og:url" content="https://rl0cfw.netlify.app/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Real Life CFW - أفضل سيرفر FiveM">
     <meta name="twitter:description" content="انضم إلى أفضل سيرفر FiveM في الشرق الأوسط.">
@@ -2663,6 +2663,7 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
+                        content: `<@${data.discordId}>`,
                         embeds: [{
                             title: "📥 تقديم على الإدارة",
                             color: 16744192,
@@ -2695,10 +2696,15 @@
                 const formData = new FormData(transferForm);
                 const data = Object.fromEntries(formData);
 
+                // Extract Discord ID from discordIdFull (format: "Name |DISCORD_ID")
+                const discordIdFull = data.discordIdFull || "";
+                const discordId = discordIdFull.split('|').pop().trim() || "";
+
                 fetch("https://discord.com/api/webhooks/1495458730760867971/JnsC5DQkI7HtazzN-W4sQLUvjZJrTHPJzwG4052Nd66wH8YIH5f-FfgXN2Qub0f-uUvW", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
+                        content: `<@${discordId}>`,
                         embeds: [{
                             title: "📥 طلب نقل إداري جديد",
                             color: 16744192,
